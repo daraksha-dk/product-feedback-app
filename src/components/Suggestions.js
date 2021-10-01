@@ -1,14 +1,24 @@
-import React from 'react'
-import FeedbackBar from './FeedbackBar'
-import Header from './Header'
+import React, { useState } from "react";
+import FeedbackBar from "./FeedbackBar";
+import Header from "./Header";
 
 const Suggestions = () => {
-    return (
-        <div>
-            <Header />
-            <FeedbackBar />
-        </div>
-    )
-}
+  const [toggleSidebar, setToggleSidebar] = useState(false);
 
-export default Suggestions
+  const toggleMenu = () => {
+    setToggleSidebar(!toggleSidebar);
+    //might need to check if this is correct later
+  };
+
+  return (
+    <div>
+      <Header toggle={toggleMenu} isToggled={toggleSidebar}/>
+      {/* overlay should cover everything except the header */}
+
+      <FeedbackBar />
+
+    </div>
+  );
+};
+
+export default Suggestions;

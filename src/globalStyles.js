@@ -11,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
   body {
       font-size: 16px;
       font-family: "Jost", sans-serif;
-      background-color: aliceblue;
   }
 
   //colors

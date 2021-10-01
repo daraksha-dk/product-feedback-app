@@ -9,7 +9,7 @@ const Div = styled.div`
   position: absolute;
   top: 72px;
   left: 0;
-  z-index: -10;
+  z-index: 1;
 `;
 
 const Overlay = () => {

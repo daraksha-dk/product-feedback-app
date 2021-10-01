@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
 import Overlay from "./Overlay";
+import FeedbackBar from "./FeedbackBar";
 
 const Container = styled.div`
   position: relative;
@@ -47,16 +48,7 @@ const CloseIcon = styled.img`
   display: none;
 `;
 
-const SuggestionsHeader = () => {
-  const [toggleSidebar, setToggleSidebar] = useState(false);
-
-  const toggleMenu = () => {
-    setToggleSidebar(!toggleSidebar);
-    //might need to check if this is correct later
-    if (toggleSidebar) {
-    }
-  };
-
+const SuggestionsHeader = ({ toggle, isToggled }) => {
   return (
     <Container>
       <Header>
@@ -69,8 +61,8 @@ const SuggestionsHeader = () => {
           <MenuIcon
             src="/assets/shared/mobile/icon-hamburger.svg"
             alt="Hamburger menu"
-            onClick={toggleMenu}
-            style={toggleSidebar ? null : { display: "block" }}
+            onClick={toggle}
+            style={isToggled ? null : { display: "block" }}
             //when we click on the menu button, we want to display the sidebar and overlay
           />
 
@@ -78,14 +70,15 @@ const SuggestionsHeader = () => {
           <CloseIcon
             src="/assets/shared/mobile/icon-close.svg"
             alt="Close menu"
-            onClick={toggleMenu}
-            style={toggleSidebar ? { display: "block" } : null}
+            onClick={toggle}
+            style={isToggled ? { display: "block" } : null}
           />
         </div>
       </Header>
       {/* if togglesidebar is true, conditionally render the sidebar and overlay */}
-      {toggleSidebar ? <Sidebar /> : null}
-      {toggleSidebar ? <Overlay /> : null}
+
+      {isToggled ? <Overlay /> : null}
+      {isToggled ? <Sidebar /> : null}
     </Container>
   );
 };
