@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { StyledButton } from "../Button";
+import { Link } from "react-router-dom";
 
 const Div = styled.div`
   background-color: #fff;
@@ -36,7 +37,7 @@ const EmptyFeedbackList = () => {
         about new ideas to improve our app.
       </Message>
 
-      <StyledButton needsPlus={true} href="/newfeedback" color="#AD1FEA">
+      <StyledButton as={Link} to="/newfeedback" needsPlus={true} color="#AD1FEA">
         Add Feedback
       </StyledButton>
     </Div>

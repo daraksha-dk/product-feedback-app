@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Menu = styled.div`
   background-color: #f7f8fd;
@@ -21,8 +22,6 @@ const Search = styled.div`
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  /* column-gap: 0.875em;
-  row-gap: 0.875em; */
   gap: 0.9em;
 `;
 
@@ -35,6 +34,10 @@ const Button = styled.button`
   font-size: 13px;
 
   :hover {
+    background-color: #cfd7ff;
+  }
+
+  :active {
     background-color: #4661e6;
     color: #fff;
   }
@@ -84,7 +87,7 @@ const ListItem = styled.li`
     left: -15px;
     width: 8px;
     height: 8px;
-    background: ${(props) => props.theme.color};
+    background: ${(props) => props.color};
   }
 `;
 
@@ -112,18 +115,20 @@ const Sidebar = () => {
       <Roadmap>
         <RoadmapView>
           <h3>Roadmap</h3>
-          <ViewLink href="/roadmap">View</ViewLink>
+          <ViewLink as={Link} to="/roadmap">
+            View
+          </ViewLink>
         </RoadmapView>
 
         <ProgressTracker>
           <ProgressList>
-            <ListItem theme={{ color: "#f49f85" }}>
+            <ListItem color="#f49f85">
               Planned <Span>{planned}</Span>
             </ListItem>
-            <ListItem theme={{ color: "#ad1fea" }}>
+            <ListItem color="#ad1fea">
               In Progress <Span>{inProgress}</Span>
             </ListItem>
-            <ListItem theme={{ color: "#62bcfa" }}>
+            <ListItem color="#62bcfa">
               Live <Span>{live}</Span>
             </ListItem>
           </ProgressList>

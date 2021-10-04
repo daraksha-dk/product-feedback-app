@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
 import { CancelButton, StyledButton } from "../Button";
+import { colors } from "../../constants";
+import Dropdown from "../Dropdown";
 
 const Container = styled.div`
-  background-color: pink;
+  background-color: #f7f8fd;
   height: 100%;
   padding: 1.5em;
 `;
@@ -67,11 +69,17 @@ const Description = styled.p`
 `;
 
 const Input = styled.input`
-  padding: 1em 1rem;
+  padding: 0.8125rem 1.5rem;
   background-color: #f7f8fd;
   border: none;
   margin-bottom: 1.5rem;
   border-radius: 5px;
+
+  &:focus {
+    outline-style: solid;
+    outline-color: #4661e6;
+    outline-width: thin;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -79,16 +87,26 @@ const TextArea = styled.textarea`
   border: none;
   border-radius: 5px;
   margin-bottom: 2.5rem;
-`;
+  padding: 0.8125rem 1.5rem;
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-};
+  &:focus {
+    outline-style: solid;
+    outline-color: red;
+    outline-width: thin;
+  }
+`;
 
 const NewFeedback = () => {
   const [headline, setHeadLine] = useState("");
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
+
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
       <Nav>
@@ -104,11 +122,14 @@ const NewFeedback = () => {
         <Form onSubmit={handleSubmit}>
           <Label htmlFor="title">Feedback title</Label>
           <Description>Add a short, descriptive headline</Description>
-          <Input type="text" placeholder="Feature" />
+          <Input type="text" />
 
           <Label htmlFor="category">Category</Label>
           <Description>Choose a category for your feedback</Description>
-          <Input type="select" />
+          <Input type="select" placeholder="Feature" />
+
+          {/* DROP down menu goes here */}
+          <Dropdown />
 
           <Label htmlFor="detail">Feedback Detail</Label>
           <Description>

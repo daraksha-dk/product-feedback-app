@@ -12,8 +12,9 @@ const Div = styled.div`
   z-index: 1;
 `;
 
-const Overlay = () => {
-  return <Div>hi</Div>;
+//if user clicks on overlay it causes it to disappear
+const Overlay = ({ toggle }) => {
+  return <Div onClick={toggle}></Div>;
 };
 
 export default Overlay;

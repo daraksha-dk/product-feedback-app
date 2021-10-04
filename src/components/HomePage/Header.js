@@ -80,7 +80,7 @@ const SuggestionsHeader = () => {
         </div>
       </Header>
 
-      {isToggled ? <Overlay /> : null}
+      {isToggled ? <Overlay toggle={toggleMenu}/> : null}
       {isToggled ? <Sidebar /> : null}
     </Container>
   );

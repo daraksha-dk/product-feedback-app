@@ -23,18 +23,12 @@ export const StyledButton = styled.a`
       }
     `}
 
-${({ margin }) =>
+  ${({ margin }) =>
     margin &&
     `
     margin-bottom: 1rem;
       
     `}
-
- //The above is the equivalent to this
-  /* ::before {
-    content: url("/assets/shared/icon-plus.svg");
-    margin-right: 4px;
-  } */
 
   :hover {
     background-color: #c75af6;
@@ -43,6 +37,6 @@ ${({ margin }) =>
 
 export const CancelButton = styled(StyledButton)`
   :hover {
-    background-color: #656EA3;
+    background-color: #656ea3;
   }
-`
+`;
