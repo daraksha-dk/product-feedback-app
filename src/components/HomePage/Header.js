@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
 import Overlay from "./Overlay";
-import FeedbackBar from "./FeedbackBar";
 
 const Container = styled.div`
   position: relative;
@@ -20,7 +19,7 @@ const Header = styled.header`
   align-items: center;
 `;
 
-const Navi = styled.div`
+const Div = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -48,34 +47,38 @@ const CloseIcon = styled.img`
   display: none;
 `;
 
-const SuggestionsHeader = ({ toggle, isToggled }) => {
+const SuggestionsHeader = () => {
+  const [isToggled, setisToggled] = useState(false);
+
+  const toggleMenu = () => {
+    setisToggled(!isToggled);
+    //might need to check if this is correct later
+  };
+
   return (
     <Container>
       <Header>
-        <Navi>
+        <Div>
           <Title>Frontend Mentor</Title>
           <SecondaryTitle>Feedback Board</SecondaryTitle>
-        </Navi>
+        </Div>
 
         <div>
           <MenuIcon
             src="/assets/shared/mobile/icon-hamburger.svg"
             alt="Hamburger menu"
-            onClick={toggle}
+            onClick={toggleMenu}
             style={isToggled ? null : { display: "block" }}
-            //when we click on the menu button, we want to display the sidebar and overlay
           />
 
-          {/* onclick, show the close button */}
           <CloseIcon
             src="/assets/shared/mobile/icon-close.svg"
             alt="Close menu"
-            onClick={toggle}
+            onClick={toggleMenu}
             style={isToggled ? { display: "block" } : null}
           />
         </div>
       </Header>
-      {/* if togglesidebar is true, conditionally render the sidebar and overlay */}
 
       {isToggled ? <Overlay /> : null}
       {isToggled ? <Sidebar /> : null}

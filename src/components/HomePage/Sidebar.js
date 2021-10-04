@@ -112,7 +112,7 @@ const Sidebar = () => {
       <Roadmap>
         <RoadmapView>
           <h3>Roadmap</h3>
-          <ViewLink href="#">View</ViewLink>
+          <ViewLink href="/roadmap">View</ViewLink>
         </RoadmapView>
 
         <ProgressTracker>
