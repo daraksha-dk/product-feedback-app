@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { StyledButton } from "../Button";
 
@@ -34,7 +35,7 @@ const FeedbackBar = () => {
         <Span> Sort by : </Span> Most Upvotes
       </SearchBar>
       {/* Most upvotes Least upvotes Most comments Least comments Add */}
-      <StyledButton needsPlus={true} href="/newfeedback" color="#AD1FEA">
+      <StyledButton as={Link} to="/newfeedback" color="#AD1FEA" needsPlus={true}>
         Add Feedback
       </StyledButton>
     </FeedbackNav>

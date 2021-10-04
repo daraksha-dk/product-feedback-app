@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { CancelButton, StyledButton } from "../Button";
 
 const Container = styled.div`
@@ -35,7 +35,13 @@ const FeedbackLink = styled.a`
 const Card = styled.div`
   background-color: #fff;
   border-radius: 10px;
-  padding: 1.5em 1.5em 0.5rem 1.5em;
+  padding: 2.75em 1.5em 0.5rem 1.5em;
+  position: relative;
+`;
+
+const Image = styled.img`
+  position: absolute;
+  top: -28px;
 `;
 
 const Title = styled.h3`
@@ -75,7 +81,14 @@ const TextArea = styled.textarea`
   margin-bottom: 2.5rem;
 `;
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+};
+
 const NewFeedback = () => {
+  const [headline, setHeadLine] = useState("");
+  const [category, setCategory] = useState("");
+  const [message, setMessage] = useState("");
   return (
     <Container>
       <Nav>
@@ -85,9 +98,10 @@ const NewFeedback = () => {
       </Nav>
 
       <Card>
+        <Image src="/assets/shared/icon-new-feedback.svg" alt="New feedback" />
         <Title>Create New Feedback</Title>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Label htmlFor="title">Feedback title</Label>
           <Description>Add a short, descriptive headline</Description>
           <Input type="text" placeholder="Feature" />
@@ -103,11 +117,23 @@ const NewFeedback = () => {
           </Description>
           <TextArea name="" id="" cols="30" rows="10"></TextArea>
 
-          <StyledButton color="#AD1FEA" margin={true}>
-            Add Feedback
+          <StyledButton
+            as={Link}
+            to="/"
+            color="#AD1FEA"
+            margin={true}
+            needsPlus={false}
+          >
+            Add feedback
           </StyledButton>
 
-          <CancelButton color="#3A4374" margin={true}>
+          <CancelButton
+            as={Link}
+            to="/"
+            color="#3A4374"
+            margin={true}
+            needsPlus={false}
+          >
             Cancel
           </CancelButton>
         </Form>

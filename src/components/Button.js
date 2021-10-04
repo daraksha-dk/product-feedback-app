@@ -17,7 +17,7 @@ export const StyledButton = styled.a`
   ${({ needsPlus }) =>
     needsPlus &&
     `
-      a&:before {
+      ::before {
         content: url("/assets/shared/icon-plus.svg");
         margin-right: 4px;
       }
@@ -42,7 +42,7 @@ ${({ margin }) =>
 `;
 
 export const CancelButton = styled(StyledButton)`
- :hover {
+  :hover {
     background-color: #656EA3;
   }
 `
