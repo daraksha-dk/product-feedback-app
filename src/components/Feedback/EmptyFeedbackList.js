@@ -37,7 +37,7 @@ const EmptyFeedbackList = () => {
         about new ideas to improve our app.
       </Message>
 
-      <StyledButton as={Link} to="/newfeedback" needsPlus={true} color="#AD1FEA">
+      <StyledButton as={Link} to="/newfeedback" color="#AD1FEA" plus="true">
         Add Feedback
       </StyledButton>
     </Div>

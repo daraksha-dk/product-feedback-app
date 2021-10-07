@@ -37,15 +37,12 @@ const SecondaryTitle = styled.span`
   opacity: 75%;
 `;
 
-const MenuIcon = styled.img`
+const Icon = styled.img`
   cursor: pointer;
   display: none;
+  
 `;
 
-const CloseIcon = styled.img`
-  cursor: pointer;
-  display: none;
-`;
 
 const SuggestionsHeader = () => {
   const [isToggled, setisToggled] = useState(false);
@@ -64,14 +61,14 @@ const SuggestionsHeader = () => {
         </Div>
 
         <div>
-          <MenuIcon
+          <Icon
             src="/assets/shared/mobile/icon-hamburger.svg"
             alt="Hamburger menu"
             onClick={toggleMenu}
             style={isToggled ? null : { display: "block" }}
           />
 
-          <CloseIcon
+          <Icon
             src="/assets/shared/mobile/icon-close.svg"
             alt="Close menu"
             onClick={toggleMenu}

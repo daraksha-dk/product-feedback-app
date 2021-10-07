@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FilterButton } from "../Button";
 
 const Menu = styled.div`
   background-color: #f7f8fd;
@@ -18,30 +19,30 @@ const Menu = styled.div`
 `;
 const Search = styled.div`
   background-color: #fff;
-  padding: 1.5em;
+  padding: 1.5em 1rem 1.5em 1.5em;
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 0.9em;
 `;
 
-const Button = styled.button`
-  padding: 0.5625rem 1rem;
-  border-radius: 10px;
-  background-color: #f2f4ff;
-  font-weight: 600;
-  color: #4661e6;
-  font-size: 13px;
+// const Button = styled.button`
+//   padding: 0.5625rem 1rem;
+//   border-radius: 10px;
+//   background-color: #f2f4ff;
+//   font-weight: 600;
+//   color: #4661e6;
+//   font-size: 13px;
 
-  :hover {
-    background-color: #cfd7ff;
-  }
+//   :hover {
+//     background-color: #cfd7ff;
+//   }
 
-  :active {
-    background-color: #4661e6;
-    color: #fff;
-  }
-`;
+//   :active {
+//     background-color: #4661e6;
+//     color: #fff;
+//   }
+// `;
 
 const Roadmap = styled.div`
   background-color: #fff;
@@ -104,12 +105,12 @@ const Sidebar = () => {
   return (
     <Menu>
       <Search>
-        <Button>All</Button>
-        <Button>UI</Button>
-        <Button>UX</Button>
-        <Button>Enhancement</Button>
-        <Button>Bug</Button>
-        <Button>Feature</Button>
+        <FilterButton>All</FilterButton>
+        <FilterButton>UI</FilterButton>
+        <FilterButton>UX</FilterButton>
+        <FilterButton>Enhancement</FilterButton>
+        <FilterButton>Bug</FilterButton>
+        <FilterButton>Feature</FilterButton>
       </Search>
 
       <Roadmap>

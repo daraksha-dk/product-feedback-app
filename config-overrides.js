@@ -6,3 +6,5 @@ module.exports = override(
     'babel-plugin-styled-components',
   )
 )
+
+// need this file for the babel plugin for style components to work

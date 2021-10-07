@@ -12,6 +12,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Suggestions} />
           <Route path="/newfeedback" component={NewFeedback} />
+          {/* Route feedback detail page */}
+          {/* Route edit feedback */}
           <Route path="/roadmap" component={RoadmapPage} />
         </Switch>
       </div>

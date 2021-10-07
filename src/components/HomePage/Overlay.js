@@ -12,7 +12,6 @@ const Div = styled.div`
   z-index: 1;
 `;
 
-//if user clicks on overlay it causes it to disappear
 const Overlay = ({ toggle }) => {
   return <Div onClick={toggle}></Div>;
 };

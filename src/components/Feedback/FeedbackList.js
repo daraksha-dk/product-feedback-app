@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import EmptyFeedbackList from "./EmptyFeedbackList";
+import Feedback from "./Feedback";
 
 const FeedbackContainer = styled.div`
   padding: 1em;
@@ -10,12 +11,11 @@ const FeedbackContainer = styled.div`
 
 const FeedbackList = () => {
   const [suggestionCount, setSuggestionCount] = useState(0);
+  const [suggestions, setSuggestions] = useState([]);
 
   return (
     <FeedbackContainer>
-      {/* dynamically render feedback items */}
-
-      {suggestionCount === 0 ? <EmptyFeedbackList /> : "there are feedbacks"}
+      {suggestionCount === 0 ? <EmptyFeedbackList /> : null}
     </FeedbackContainer>
   );
 };

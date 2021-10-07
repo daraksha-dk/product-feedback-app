@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
 import { CancelButton, StyledButton } from "../Button";
-import { colors } from "../../constants";
-import Dropdown from "../Dropdown";
 
 const Container = styled.div`
   background-color: #f7f8fd;
@@ -80,6 +78,15 @@ const Input = styled.input`
     outline-color: #4661e6;
     outline-width: thin;
   }
+
+  ${({ needsArrow }) =>
+    needsArrow &&
+    `
+      ::after {
+        content: url("/assets/shared/icon-plus.svg");
+       // margin-right: 4px;
+      }
+    `}
 `;
 
 const TextArea = styled.textarea`
@@ -91,20 +98,47 @@ const TextArea = styled.textarea`
 
   &:focus {
     outline-style: solid;
-    outline-color: red;
+    outline-color: #4661e6;
     outline-width: thin;
   }
 `;
 
+const ListButton = styled.button`
+  padding: 0.8125rem 1.5rem;
+  background-color: #f7f8fd;
+  border: none;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  &:focus {
+    outline-style: solid;
+    outline-color: #4661e6;
+    outline-width: thin;
+  }
+
+  ::after {
+    content: url("/assets/shared/icon-arrow-down.svg");
+  }
+`;
+
 const NewFeedback = () => {
-  const [headline, setHeadLine] = useState("");
+  const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
 
-  const [open, setOpen] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //create component
+    const feedback = {
+      id: new Date().getTime(),
+      title: title,
+      message: message,
+      category: category,
+    };
   };
 
   return (
@@ -122,39 +156,44 @@ const NewFeedback = () => {
         <Form onSubmit={handleSubmit}>
           <Label htmlFor="title">Feedback title</Label>
           <Description>Add a short, descriptive headline</Description>
-          <Input type="text" />
+          <Input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
           <Label htmlFor="category">Category</Label>
           <Description>Choose a category for your feedback</Description>
-          <Input type="select" placeholder="Feature" />
-
-          {/* DROP down menu goes here */}
-          <Dropdown />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Feature">Feature</option>
+            <option value="UI">UI</option>
+            <option value="Coconut">UX</option>
+            <option value="Enhancement">Enhancement</option>
+            <option value="Bug">Bug</option>
+          </select>
 
           <Label htmlFor="detail">Feedback Detail</Label>
           <Description>
             Include any specific comments on what should be improved, added,
             etc.
           </Description>
-          <TextArea name="" id="" cols="30" rows="10"></TextArea>
+          <TextArea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></TextArea>
 
-          <StyledButton
-            as={Link}
-            to="/"
-            color="#AD1FEA"
-            margin={true}
-            needsPlus={false}
-          >
+          <StyledButton as={Link} to="/" color="#AD1FEA" margin>
             Add feedback
           </StyledButton>
 
-          <CancelButton
-            as={Link}
-            to="/"
-            color="#3A4374"
-            margin={true}
-            needsPlus={false}
-          >
+          <CancelButton as={Link} to="/" color="#3A4374" margin>
             Cancel
           </CancelButton>
         </Form>
