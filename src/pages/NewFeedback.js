@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
-import { CancelButton, StyledButton } from "../Button";
+import { CancelButton, StyledButton } from "../components/Button";
 
 const Container = styled.div`
   background-color: #f7f8fd;

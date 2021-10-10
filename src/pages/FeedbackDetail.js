@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import Container from "../Container";
-import Feedback from "./Feedback";
+import Container from "../components/Container";
+import Feedback from "../components/Feedback/Feedback";
 
 const FeedbackDetail = () => {
   let { id } = useParams();

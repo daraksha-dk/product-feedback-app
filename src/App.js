@@ -1,17 +1,15 @@
-// import styled from "styled-components";
-import Suggestions from "./pages/Suggestions";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import RoadmapPage from "./components/Roadmap/RoadmapPage";
-import NewFeedback from "./components/Feedback/NewFeedback";
-import FeedbackDetail from "./components/Feedback/FeedbackDetail";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import RoadmapPage from "./pages/RoadmapPage";
+import NewFeedback from "./pages/NewFeedback";
+import FeedbackDetail from "./pages/FeedbackDetail";
 
-//add components
 function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Suggestions} />
+          <Route exact path="/" component={Home} />
           <Route path="/newfeedback" component={NewFeedback} />
           <Route path="/feature/:id" component={FeedbackDetail} />
           {/* Route edit feedback */}
