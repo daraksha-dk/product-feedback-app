@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import FeedbackBar from "./FeedbackBar";
-import EmptyFeedbackList from "../Feedback/EmptyFeedbackList";
-import Feedback from "../Feedback/Feedback";
-import Data from "../../data/data.json";
+import Header from "../components/HomePage/Header";
+import FeedbackBar from "../components/HomePage/FeedbackBar";
+import EmptyFeedbackList from "../components/Feedback/EmptyFeedbackList";
+import Feedback from "../components/Feedback/Feedback";
+import Data from "../data/data.json";
 import styled from "styled-components";
 
 const FeedbackContainer = styled.div`
   padding: 1.5em 1em 1em 1em;
   background-color: #f7f8fd;
-  height: calc(100vh - (72px + 56px));
 `;
 
 const Suggestions = () => {
@@ -22,14 +21,15 @@ const Suggestions = () => {
   };
 
   const items = Data.productRequests.map((item) => {
-    console.log(item.title);
     return (
       <Feedback
+        key={item.id}
+        id={item.id}
         title={item.title}
         category={item.category}
         description={item.description}
         upvotes={item.upvotes}
-        comments={item.comments}
+        comments={item.comments ? item.comments : ""} //doesn't include replies yet
       />
     );
   });

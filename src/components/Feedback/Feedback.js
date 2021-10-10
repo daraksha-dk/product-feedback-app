@@ -1,12 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { FilterButton, StyledButton } from "../Button";
+import { FilterButton } from "../Button";
+import { Link } from "react-router-dom";
+
+const FeedbackLink = styled.a`
+/* text-decoration: none; */
+`
 
 const FeedbackItem = styled.div`
   padding: 1.5em;
   background-color: white;
   margin-bottom: 1rem;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
 `;
 
 const Title = styled.h5`
@@ -26,7 +34,7 @@ const UpvoteButton = styled.button`
   border-radius: 10px;
   background-color: #f2f4ff;
   font-weight: 600;
-  color: #4661e6;
+  color: #3a4374;
   font-size: 13px;
 
   :hover {
@@ -37,27 +45,46 @@ const UpvoteButton = styled.button`
     background-color: #4661e6;
     color: #fff;
   }
+
+  ::before {
+    content: url("/assets/shared/icon-arrow-up.svg");
+    margin-right: 6px;
+  }
 `;
 
 const CommentButton = styled.button`
   background-color: transparent;
-  display: flex;
-  justify-content: flex-end;
+  color: #3a4374;
+  font-size: 13px;
+  font-weight: 700;
+
+  ::before {
+    content: url("/assets/shared/icon-comments.svg");
+    margin-right: 6px;
+  }
 `;
 
-const Feedback = ({ title, description, category, upvotes }) => {
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Feedback = ({ id, title, description, category, upvotes, comments }) => {
   return (
-    <FeedbackItem>
-      <div>
-        <Title>{title}</Title>
-        <Description>{description}</Description>
-        <FilterButton>{category}</FilterButton>
-      </div>
-      <UpvoteButton>{upvotes}</UpvoteButton>
-      <div>
-        <CommentButton>0</CommentButton>
-      </div>
-    </FeedbackItem>
+    <Link to={`/feature/${id}`}>
+      <FeedbackItem>
+        <div>
+          <Title>{title}</Title>
+          <Description>{description}</Description>
+          <FilterButton margin="true">{category}</FilterButton>
+        </div>
+
+        <ButtonDiv>
+          <UpvoteButton>{upvotes}</UpvoteButton>
+          <CommentButton>{Object.keys(comments).length}</CommentButton>
+        </ButtonDiv>
+      </FeedbackItem>
+    </Link>
   );
 };
 

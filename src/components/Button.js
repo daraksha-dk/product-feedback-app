@@ -58,4 +58,6 @@ export const FilterButton = styled.button`
     background-color: #4661e6;
     color: #fff;
   }
+
+  ${({margin}) => margin && { marginBottom: "1rem" }}
 `;
