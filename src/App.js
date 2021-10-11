@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RoadmapPage from "./pages/RoadmapPage";
 import NewFeedback from "./pages/NewFeedback";
 import FeedbackDetail from "./pages/FeedbackDetail";
+import { SuggestionsProvider } from "./contexts/SuggestionsContext";
 
 function App() {
   return (
-    <Router>
-      <div>
+    <SuggestionsProvider>
+      <Router>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/newfeedback" component={NewFeedback} />
@@ -15,8 +16,8 @@ function App() {
           {/* Route edit feedback */}
           <Route path="/roadmap" component={RoadmapPage} />
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </SuggestionsProvider>
   );
 }
 

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
-import { CancelButton, StyledButton } from "../components/Button";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { CancelButton, StyledButton, BackButton } from "../components/Button";
+import { SuggestionsContext } from "../contexts/SuggestionsContext";
 
 const Container = styled.div`
   background-color: #f7f8fd;
@@ -9,27 +10,8 @@ const Container = styled.div`
   padding: 1.5em;
 `;
 
-const BackButton = styled.p`
-  ::before {
-    content: url("/assets/shared/icon-arrow-left.svg");
-    margin-right: 4px;
-  }
-`;
-
 const Nav = styled.div`
-  margin-bottom: 4em;
-`;
-
-const FeedbackLink = styled.a`
-  background-color: #4661e6;
-  padding: 0.8em 1.25em;
-  color: #fff;
-  font-weight: 700;
-  border-radius: 10px;
-  font-size: 13px;
-  /* margin: 1.5em 0 2em 0; */
-  display: inline-block;
-  text-decoration: none;
+  margin-bottom: 3.5em;
 `;
 
 const Card = styled.div`
@@ -129,6 +111,12 @@ const NewFeedback = () => {
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
 
+  let history = useHistory();
+
+  //CONTEXT API
+  const { suggestionCount, setSuggestionCount } =
+    useContext(SuggestionsContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -139,21 +127,25 @@ const NewFeedback = () => {
       message: message,
       category: category,
     };
+
+    setSuggestionCount((prevState) => prevState + 1);
+
+    history.push("/");
   };
 
   return (
     <Container>
       <Nav>
-        <Link to="/">
-          <BackButton>Go back</BackButton>
-        </Link>
+        <BackButton as={Link} to="/" color="#647196">
+          Go Back
+        </BackButton>
       </Nav>
 
       <Card>
         <Image src="/assets/shared/icon-new-feedback.svg" alt="New feedback" />
         <Title>Create New Feedback</Title>
 
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Label htmlFor="title">Feedback title</Label>
           <Description>Add a short, descriptive headline</Description>
           <Input
@@ -189,11 +181,16 @@ const NewFeedback = () => {
             onChange={(e) => setMessage(e.target.value)}
           ></TextArea>
 
-          <StyledButton as={Link} to="/" color="#AD1FEA" margin>
+          {/* FIXME: Doesnt redirect after clicking */}
+          <StyledButton onClick={handleSubmit} color="#AD1FEA" margin="true">
             Add feedback
           </StyledButton>
 
-          <CancelButton as={Link} to="/" color="#3A4374" margin>
+          <CancelButton
+            onClick={() => history.push("/")}
+            color="#3A4374"
+            margin="true"
+          >
             Cancel
           </CancelButton>
         </Form>
