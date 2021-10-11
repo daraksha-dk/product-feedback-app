@@ -7,9 +7,7 @@ import styled from "styled-components";
 import { SuggestionsContext } from "../contexts/SuggestionsContext";
 
 const FeedbackContainer = styled.div`
-  height: calc(100vh - (72px + 56px));
-  padding: 1.5em 1em 1em 1em;
-  background-color: #f7f8fd;
+  padding: 2em 1em 2.4375em 1em;
 `;
 
 const Suggestions = () => {

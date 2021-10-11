@@ -10,6 +10,7 @@ export const StyledButton = styled.a`
   text-decoration: none;
   border-radius: 10px;
   text-align: center; //need for button in newfeedback
+  cursor: pointer;
 
   ${({ plus }) =>
     plus &&
@@ -23,13 +24,13 @@ export const StyledButton = styled.a`
   ${({ margin }) => margin && { marginBottom: "1rem" }}
 
   :hover {
-    background-color: #c75af6;
+    background-color: var(--hoverPurple);
   }
 `;
 
 export const CancelButton = styled(StyledButton)`
   :hover {
-    background-color: #656ea3;
+    background-color: var(--hoverRoyalBlue);
   }
 `;
 
@@ -54,9 +55,8 @@ export const BackButton = styled.a`
   font-weight: 700;
   background-color: transparent;
   font-size: 13px;
-  color: ${(props) => props.color}; 
+  color: ${(props) => props.color};
 `;
-
 
 //Actual buttons
 export const FilterButton = styled.button`
@@ -102,5 +102,3 @@ export const UpvoteButton = styled.button`
     margin-right: 6px;
   }
 `;
-
-

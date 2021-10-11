@@ -16,7 +16,6 @@ This is a solution to the [Product feedback app challenge on Frontend Mentor](ht
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-
 ## Overview
 
 ### The challenge
@@ -39,8 +38,6 @@ Users should be able to:
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
-
-
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
@@ -61,13 +58,17 @@ Add a screenshot of your solution. The easiest way to do this is to use Firefox 
 
 I learned how to use basic properties of Styled components to reduce code such as passing props to my button components in order to help reduce the amount of code I have to write in order to style my buttons.
 
+I learned how to use the React context api to manage global state in my application.
+
+React router has also been an amazing tool that's really helped me during this project. I learned how to dynamically render components by using routes. Also react router helps components to render without any flashes of white screen or page reload, unlike typical href links.
+
 ### Continued development
 
 - I think it would be interesting to add transitions to the menu on mobile so that it slides out from the right.
 
 ### Useful resources
 
-- [Styled components](https://styled-components.com/docs/advanced) - This resource helped me to understand how to apply different styles to the same element without typing the same code over and over again. 
+- [Styled components](https://styled-components.com/docs/advanced) - This resource helped me to understand how to apply different styles to the same element without typing the same code over and over again.
 
 - [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
 

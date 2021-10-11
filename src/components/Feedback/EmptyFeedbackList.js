@@ -19,7 +19,7 @@ const Notice = styled.h3`
 `;
 
 const Message = styled.p`
-  color: #647196;
+  color: var(--gray);
   font-size: 13px;
   margin-bottom: 1.5rem;
 `;
