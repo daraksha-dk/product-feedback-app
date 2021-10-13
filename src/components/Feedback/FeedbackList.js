@@ -1,18 +1,19 @@
-import React from "react";
-import Data from "../../data/data.json";
+import React, { useContext } from "react";
 import Feedback from "./Feedback";
+import { SuggestionsContext } from "../../contexts/SuggestionsContext";
+import { Link } from "react-router-dom";
+import StyledLink from "../StyledLink";
 
 const FeedbackList = () => {
-  const items = Data.productRequests.map((feedback) => {
-    return <Feedback key={feedback.id} feedback={feedback} />;
-  });
+  const { suggestions } = useContext(SuggestionsContext);
 
-  //not sure where adding a feedback goes at the moment
-  const add = () => {
-    //setSuggestions([...suggestions].concat(feedbackObj)); //add to state variable
-    // increase suggestion count
-    console.log("hi");
-  };
+  const items = suggestions.map((feedback) => {
+    return (
+      <StyledLink key={feedback.id} to={`/feature/${feedback.id}`}>
+        <Feedback feedback={feedback} />
+      </StyledLink>
+    );
+  });
 
   return <div>{items}</div>;
 };

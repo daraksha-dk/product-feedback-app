@@ -1,11 +1,17 @@
-import Home from "./pages/Home";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import RoadmapPage from "./pages/RoadmapPage";
-import NewFeedback from "./pages/NewFeedback";
-import FeedbackDetail from "./pages/FeedbackDetail";
+import { Home, NewFeedback, FeedbackDetail, RoadmapPage } from "./pages";
 import { SuggestionsProvider } from "./contexts/SuggestionsContext";
 
 function App() {
+  //should feedbacks be added here?
+
+  /* We are going to add new feedbacks from here */
+  // const addCity = (name, temperature) => {
+  //   const newCity = { name, temperature };
+  //   setCities(prevCities => [...prevCities, { name, temperature }]);
+  // };
+
   return (
     <SuggestionsProvider>
       <Router>

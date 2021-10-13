@@ -1,21 +1,16 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { CancelButton, StyledButton, BackButton } from "../components/Button";
-import { SuggestionsContext } from "../contexts/SuggestionsContext";
-
-const Container = styled.div`
-  background-color: #f7f8fd;
-  height: 100%;
-  padding: 1.5em;
-`;
+// import { SuggestionsContext } from "../contexts/SuggestionsContext";
+import Container from "../components/Container";
 
 const Nav = styled.div`
   margin-bottom: 3.5em;
 `;
 
 const Card = styled.div`
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 10px;
   padding: 2.75em 1.5em 0.5rem 1.5em;
   position: relative;
@@ -33,13 +28,13 @@ const Title = styled.h3`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  color: #647196;
+  color: var(--gray);
 `;
 
 const Label = styled.label`
   font-weight: 700;
   font-size: 13px;
-  color: #3a4374;
+  color: var(--lighterDarkBlue);
   margin-bottom: 0.1875rem;
 `;
 
@@ -49,40 +44,11 @@ const Description = styled.p`
 `;
 
 const Input = styled.input`
-  padding: 0.8125rem 1.5rem;
-  background-color: #f7f8fd;
-  border: none;
   margin-bottom: 1.5rem;
-  border-radius: 5px;
-
-  &:focus {
-    outline-style: solid;
-    outline-color: #4661e6;
-    outline-width: thin;
-  }
-
-  ${({ needsArrow }) =>
-    needsArrow &&
-    `
-      ::after {
-        content: url("/assets/shared/icon-plus.svg");
-       // margin-right: 4px;
-      }
-    `}
 `;
 
 const TextArea = styled.textarea`
-  background-color: #f7f8fd;
-  border: none;
-  border-radius: 5px;
   margin-bottom: 2.5rem;
-  padding: 0.8125rem 1.5rem;
-
-  &:focus {
-    outline-style: solid;
-    outline-color: #4661e6;
-    outline-width: thin;
-  }
 `;
 
 const ListButton = styled.button`
@@ -106,16 +72,12 @@ const ListButton = styled.button`
   }
 `;
 
-const NewFeedback = () => {
+export const NewFeedback = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
 
   let history = useHistory();
-
-  //CONTEXT API
-  const { suggestionCount, setSuggestionCount } =
-    useContext(SuggestionsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -126,9 +88,9 @@ const NewFeedback = () => {
       title: title,
       message: message,
       category: category,
+      upvotes: 0,
+      status: "planned",
     };
-
-    setSuggestionCount((prevState) => prevState + 1);
 
     history.push("/");
   };
@@ -136,7 +98,7 @@ const NewFeedback = () => {
   return (
     <Container>
       <Nav>
-        <BackButton as={Link} to="/" color="#647196">
+        <BackButton as={Link} to="/" color="var(--gray)">
           Go Back
         </BackButton>
       </Nav>
@@ -146,7 +108,7 @@ const NewFeedback = () => {
         <Title>Create New Feedback</Title>
 
         <Form>
-          <Label htmlFor="title">Feedback title</Label>
+          <Label htmlFor="title">Feedback Title</Label>
           <Description>Add a short, descriptive headline</Description>
           <Input
             type="text"
@@ -182,13 +144,17 @@ const NewFeedback = () => {
           ></TextArea>
 
           {/* FIXME: Doesnt redirect after clicking */}
-          <StyledButton onClick={handleSubmit} color="#AD1FEA" margin="true">
+          <StyledButton
+            onClick={handleSubmit}
+            bgcolor="var(--brightPurple)"
+            margin="true"
+          >
             Add feedback
           </StyledButton>
 
           <CancelButton
             onClick={() => history.push("/")}
-            color="#3A4374"
+            bgcolor="var(--lighterDarkBlue)"
             margin="true"
           >
             Cancel
@@ -198,5 +164,3 @@ const NewFeedback = () => {
     </Container>
   );
 };
-
-export default NewFeedback;

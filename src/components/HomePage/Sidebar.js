@@ -6,19 +6,19 @@ import { FilterButton } from "../Button";
 const Menu = styled.div`
   background-color: #f7f8fd;
   height: calc(100vh - (72px));
-  //fills in the rest of the context after the header
   width: 72%;
   margin-left: auto;
   padding: 1.5em 1.5em 0 1.5em;
   display: flex;
   flex-direction: column;
-  gap: 24px; //MAY CHANGE LATER
+  gap: 24px; //subject to change
   position: absolute;
   right: 0;
   z-index: 10;
 `;
+
 const Search = styled.div`
-  background-color: #fff;
+  background-color: var(--white);
   padding: 1.5em 1rem 1.5em 1.5em;
   border-radius: 10px;
   display: flex;
@@ -26,26 +26,8 @@ const Search = styled.div`
   gap: 0.9em;
 `;
 
-// const Button = styled.button`
-//   padding: 0.5625rem 1rem;
-//   border-radius: 10px;
-//   background-color: #f2f4ff;
-//   font-weight: 600;
-//   color: #4661e6;
-//   font-size: 13px;
-
-//   :hover {
-//     background-color: #cfd7ff;
-//   }
-
-//   :active {
-//     background-color: #4661e6;
-//     color: #fff;
-//   }
-// `;
-
 const Roadmap = styled.div`
-  background-color: #fff;
+  background-color: var(--white);
   padding: 1.5em;
   border-radius: 10px;
 `;
@@ -77,7 +59,7 @@ const ListItem = styled.li`
   position: relative;
   margin-left: 1em;
   font-weight: 400;
-  color: #3a4374;
+  color: var(--lighterDarkBlue);
 
   ::before {
     padding: inherit;
@@ -123,13 +105,13 @@ const Sidebar = () => {
 
         <ProgressTracker>
           <ProgressList>
-            <ListItem color="#f49f85">
+            <ListItem color="var(--orange)">
               Planned <Span>{planned}</Span>
             </ListItem>
-            <ListItem color="#ad1fea">
+            <ListItem color="var(--brightPurple)">
               In Progress <Span>{inProgress}</Span>
             </ListItem>
-            <ListItem color="#62bcfa">
+            <ListItem color="var(--brightBlue)">
               Live <Span>{live}</Span>
             </ListItem>
           </ProgressList>

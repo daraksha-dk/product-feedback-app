@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { FilterButton, UpvoteButton } from "../Button";
-import { Link } from "react-router-dom";
 
 const FeedbackItem = styled.div`
   padding: 1.5em;
@@ -51,29 +50,39 @@ const CommentDiv = styled.div`
 
 const MainInfo = styled.div``;
 
+const calculate = (feedback) => {
+  let comLength = feedback.comments.length;
+
+  feedback.comments.forEach((comment) => {
+    if (comment.replies) {
+      comLength += comment.replies.length;
+    }
+  });
+
+  return comLength;
+};
+
 const Feedback = ({ feedback }) => {
   return (
-    // TODO: see if theres a better way to style this link instead of using inline styles
-    <Link to={`/feature/${feedback.id}`} style={{ textDecoration: "none" }}>
-      <FeedbackItem>
-        <MainInfo>
-          <Title>{feedback.title}</Title>
-          <Description>{feedback.description}</Description>
-          <FilterButton margin="true">{feedback.category}</FilterButton>
-        </MainInfo>
+    <FeedbackItem>
+      <MainInfo>
+        <Title>{feedback.title}</Title>
+        <Description>{feedback.description}</Description>
+        <FilterButton margin="true">{feedback.category}</FilterButton>
+      </MainInfo>
 
-        <UpvoteDiv>
-          <UpvoteButton>{feedback.upvotes}</UpvoteButton>
-        </UpvoteDiv>
+      <UpvoteDiv>
+        <UpvoteButton>{feedback.upvotes}</UpvoteButton>
+      </UpvoteDiv>
 
-        <CommentDiv>
-          {/* doesnt account for replies yet */}
-          <CommentButton>
-            {feedback.comments ? Object.keys(feedback.comments).length : 0}
-          </CommentButton>
-        </CommentDiv>
-      </FeedbackItem>
-    </Link>
+      <CommentDiv>
+        {/* doesnt account for replies yet */}
+        <CommentButton>
+          {/* {console.log(feedback)} */}
+          {feedback.comments ? calculate(feedback) : 0}
+        </CommentButton>
+      </CommentDiv>
+    </FeedbackItem>
   );
 };
 

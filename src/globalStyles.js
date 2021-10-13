@@ -48,10 +48,23 @@ const GlobalStyles = styled.createGlobalStyle`
   }
 
   body {
-    
     height: 100%;
     font-size: 16px;
     font-family: "Jost", sans-serif;
+  }
+
+  input,
+  textarea {
+    background-color: var(--paleGray);
+    padding: 0.8125rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+
+    &:focus {
+      outline-style: solid;
+      outline-color: var(--royalBlue);
+      outline-width: thin;
+    }
   }
 
   button {

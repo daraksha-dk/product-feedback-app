@@ -26,13 +26,13 @@ const Div = styled.div`
 
 const Title = styled.h1`
   font-size: 0.9375em;
-  color: #fff;
+  color: var(--white);
   line-height: normal;
 `;
 
 const SecondaryTitle = styled.span`
   font-size: 0.8125em;
-  color: #fff;
+  color: var(--white);
   font-weight: 500;
   opacity: 75%;
 `;
@@ -40,16 +40,13 @@ const SecondaryTitle = styled.span`
 const Icon = styled.img`
   cursor: pointer;
   display: none;
-  
 `;
-
 
 const SuggestionsHeader = () => {
   const [isToggled, setisToggled] = useState(false);
 
   const toggleMenu = () => {
     setisToggled(!isToggled);
-    //might need to check if this is correct later
   };
 
   return (
@@ -77,7 +74,7 @@ const SuggestionsHeader = () => {
         </div>
       </Header>
 
-      {isToggled ? <Overlay toggle={toggleMenu}/> : null}
+      {isToggled ? <Overlay toggle={toggleMenu} /> : null}
       {isToggled ? <Sidebar /> : null}
     </Container>
   );

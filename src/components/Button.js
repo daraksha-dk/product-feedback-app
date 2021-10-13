@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.a`
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.bgcolor};
   color: #fff;
   padding: 0.8em 1.25em;
   font-weight: 700;
@@ -51,6 +51,10 @@ export const BackButton = styled.a`
     content: url("/assets/shared/icon-arrow-left.svg");
     margin-right: 14px;
   }
+  :focus {
+    text-decoration: underline;
+  }
+
   text-decoration: none;
   font-weight: 700;
   background-color: transparent;

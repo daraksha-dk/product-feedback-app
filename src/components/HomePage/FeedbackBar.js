@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { StyledButton } from "../Button";
 
 const FeedbackNav = styled.div`
-  background-color: #373f68;
+  background-color: var(--darkBlue);
   height: 56px;
-  color: #fff;
+  color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +21,7 @@ const SearchBar = styled.p`
   ::after {
     content: url("/assets/shared/icon-arrow-down.svg");
     margin-left: 7px;
-    color: #fff;
+    color: var(--white);
   }
 `;
 
@@ -37,7 +37,12 @@ const FeedbackBar = () => {
       </SearchBar>
       {/* when we click the search bar, the dropdown menu should appear */}
       {/* Most upvotes Least upvotes Most comments Least comments Add */}
-      <StyledButton as={Link} to="/newfeedback" color="#AD1FEA" plus="true">
+      <StyledButton
+        as={Link}
+        to="/newfeedback"
+        bgcolor="var(--brightPurple)"
+        plus="true"
+      >
         Add Feedback
       </StyledButton>
     </FeedbackNav>

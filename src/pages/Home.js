@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Header from "../components/HomePage/Header";
 import FeedbackBar from "../components/HomePage/FeedbackBar";
 import EmptyFeedbackList from "../components/Feedback/EmptyFeedbackList";
@@ -10,11 +10,8 @@ const FeedbackContainer = styled.div`
   padding: 2em 1em 2.4375em 1em;
 `;
 
-const Suggestions = () => {
-  const { suggestionCount, setSuggestionCount } =
-    useContext(SuggestionsContext);
-
-  console.log("COUNT THE SUGGESTIONS" + suggestionCount);
+export const Home = () => {
+  const { suggestions } = useContext(SuggestionsContext);
 
   return (
     <div>
@@ -23,10 +20,9 @@ const Suggestions = () => {
       <FeedbackBar />
 
       <FeedbackContainer>
-        {suggestionCount === 0 ? <EmptyFeedbackList /> : <FeedbackList />}
+        {suggestions.length === 0 ? <EmptyFeedbackList /> : <FeedbackList />}
       </FeedbackContainer>
     </div>
   );
 };
 
-export default Suggestions;
