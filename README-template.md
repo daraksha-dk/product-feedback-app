@@ -60,7 +60,9 @@ I learned how to use basic properties of Styled components to reduce code such a
 
 I learned how to use the React context api to manage global state in my application.
 
-React router has also been an amazing tool that's really helped me during this project. I learned how to dynamically render components by using routes. Also react router helps components to render without any flashes of white screen or page reload, unlike typical href links.
+React router has also been an amazing tool that's really helped me during this project. I learned how to dynamically render components by using routes and hooks such as useParams. Also react router helps components to render without any flashes of white screen or page reload, unlike typical href links.
+
+I also learned how to navigate through a nested JSON file to get the data that I want and to properly display it as needed.
 
 ### Continued development
 

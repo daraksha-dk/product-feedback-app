@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home, NewFeedback, FeedbackDetail, RoadmapPage } from "./pages";
+import {
+  Home,
+  NewFeedback,
+  FeedbackDetail,
+  RoadmapPage,
+  EditFeedback,
+} from "./pages";
 import { SuggestionsProvider } from "./contexts/SuggestionsContext";
 
 function App() {
@@ -19,7 +25,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/newfeedback" component={NewFeedback} />
           <Route path="/feature/:id" component={FeedbackDetail} />
-          {/* Route edit feedback */}
+          <Route path="/edit-feedback/:id" component={EditFeedback}/>
           <Route path="/roadmap" component={RoadmapPage} />
         </Switch>
       </Router>

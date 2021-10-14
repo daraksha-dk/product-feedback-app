@@ -37,6 +37,7 @@ const EndSection = styled.div`
 const Nav = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
 `;
 
@@ -72,7 +73,8 @@ export const FeedbackDetail = () => {
   };
 
   const [comments, setComments] = useState(0);
-  const { id } = useParams();
+  const { id, match } = useParams();
+  console.log(match);
   const feedbackItem = suggestions[id - 1];
 
   const addComments = (feedbackItem) => {
@@ -93,14 +95,17 @@ export const FeedbackDetail = () => {
     addComments(feedbackItem);
   }, []);
 
-
   return (
     <Container>
       <Nav>
         <BackButton as={Link} to="/" color="var(--gray)">
           Go Back
         </BackButton>
-        <EditButton as={Link} to="/" bgcolor="var(--royalBlue)">
+        <EditButton
+          as={Link}
+          to={`/edit-feedback/${id}`}
+          bgcolor="var(--royalBlue)"
+        >
           Edit Feedback
         </EditButton>
       </Nav>
