@@ -12,6 +12,8 @@ import { SuggestionsProvider } from "./contexts/SuggestionsContext";
 function App() {
   //should feedbacks be added here?
 
+  
+
   /* We are going to add new feedbacks from here */
   // const addCity = (name, temperature) => {
   //   const newCity = { name, temperature };

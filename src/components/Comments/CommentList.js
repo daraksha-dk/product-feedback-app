@@ -18,15 +18,16 @@ const CommentThread = styled.div`
 const CommentList = ({ id, comments }) => {
   const { suggestions } = useContext(SuggestionsContext);
 
-  const items = suggestions[id - 1].comments.map((comment) => {
+  const items = suggestions[id - 1].comments.map((comment, index) => {
     const image = comment.user.image;
     const fullName = comment.user.name;
     const userName = comment.user.username;
 
     const checkReply = () => {
-      const replies = comment.replies.map((reply) => {
+      const replies = comment.replies.map((reply, index) => {
         return (
           <Reply
+            key={index}
             comment={reply.content}
             image={`.${reply.user.image}`}
             fullName={reply.user.name}
@@ -41,6 +42,7 @@ const CommentList = ({ id, comments }) => {
     return (
       <div>
         <Comment
+          key={index}
           comment={comment}
           image={image}
           fullName={fullName}

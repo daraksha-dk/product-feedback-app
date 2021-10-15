@@ -73,8 +73,7 @@ export const FeedbackDetail = () => {
   };
 
   const [comments, setComments] = useState(0);
-  const { id, match } = useParams();
-  console.log(match);
+  const { id } = useParams();
   const feedbackItem = suggestions[id - 1];
 
   const addComments = (feedbackItem) => {

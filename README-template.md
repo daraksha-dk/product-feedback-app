@@ -64,6 +64,8 @@ React router has also been an amazing tool that's really helped me during this p
 
 I also learned how to navigate through a nested JSON file to get the data that I want and to properly display it as needed.
 
+I also learned how to make a custom select menu to match the design provided.
+
 ### Continued development
 
 - I think it would be interesting to add transitions to the menu on mobile so that it slides out from the right.

@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { CancelButton, StyledButton, BackButton } from "../components/Button";
-// import { SuggestionsContext } from "../contexts/SuggestionsContext";
+import { SuggestionsContext } from "../contexts/SuggestionsContext";
 import Container from "../components/Container";
+import Dropdown from "../components/Dropdown";
 
 const Nav = styled.div`
   margin-bottom: 3.5em;
@@ -14,6 +15,8 @@ const Card = styled.div`
   border-radius: 10px;
   padding: 2.75em 1.5em 0.5rem 1.5em;
   position: relative;
+  max-width: 540px;
+  margin: 0 auto;
 `;
 
 const Image = styled.img`
@@ -49,6 +52,9 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   margin-bottom: 2.5rem;
+  height: 120px;
+  padding: 1rem;
+  resize: none;
 `;
 
 const ListButton = styled.button`
@@ -74,8 +80,11 @@ const ListButton = styled.button`
 
 export const NewFeedback = () => {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Feature");
   const [message, setMessage] = useState("");
+  const categories = ["Feature", "UI", "UX", "Enhancement", "Bug"];
+
+  const { suggestions, addFeedback } = useContext(SuggestionsContext);
 
   let history = useHistory();
 
@@ -86,11 +95,13 @@ export const NewFeedback = () => {
     const feedback = {
       id: new Date().getTime(),
       title: title,
-      message: message,
       category: category,
+      message: message,
       upvotes: 0,
-      status: "planned",
+      status: "suggestions",
     };
+
+    addFeedback(feedback);
 
     history.push("/");
   };
@@ -118,16 +129,9 @@ export const NewFeedback = () => {
 
           <Label htmlFor="category">Category</Label>
           <Description>Choose a category for your feedback</Description>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="Feature">Feature</option>
-            <option value="UI">UI</option>
-            <option value="Coconut">UX</option>
-            <option value="Enhancement">Enhancement</option>
-            <option value="Bug">Bug</option>
-          </select>
+          <Dropdown categories={categories} setCategory={setCategory} />
+          <input type="hidden" value={category} />
+          {/* {console.log(category)} */}
 
           <Label htmlFor="detail">Feedback Detail</Label>
           <Description>
@@ -137,8 +141,8 @@ export const NewFeedback = () => {
           <TextArea
             name=""
             id=""
-            cols="30"
-            rows="10"
+            // cols="30"
+            // rows="10"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           ></TextArea>

@@ -8,6 +8,12 @@ export const SuggestionsProvider = ({ children }) => {
   const [feedbackCount, setFeedbackCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  //add goes in here maybe?
+  const addFeedback = (feedbackObj) => {
+    console.log("hi");
+    setSuggestions([...suggestions, feedbackObj]);
+  };
+
   useEffect(() => {
     if (suggestions) {
       setFeedbackCount(suggestions.length);
@@ -17,7 +23,7 @@ export const SuggestionsProvider = ({ children }) => {
     }
   }, [suggestions, feedbackCount]);
 
-  const value = { suggestions };
+  const value = { suggestions, addFeedback };
 
   return (
     <SuggestionsContext.Provider value={value}>

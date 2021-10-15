@@ -53,12 +53,17 @@ const GlobalStyles = styled.createGlobalStyle`
     font-family: "Jost", sans-serif;
   }
 
+  input {
+    padding: 0.9375rem 1rem 0.875rem;
+  }
+
   input,
   textarea {
     background-color: var(--paleGray);
-    padding: 0.8125rem 1.5rem;
     border: none;
     border-radius: 5px;
+    font-family: inherit;
+    color: var(--lighterDarkBlue);
 
     &:focus {
       outline-style: solid;
