@@ -9,6 +9,7 @@ import {
   DeleteButton,
 } from "../components/Button";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const Nav = styled.div`
   margin-bottom: 3.5em;
@@ -68,14 +69,14 @@ export const EditFeedback = () => {
 
     //create component
     const feedback = {
-      id: new Date().getTime(),
+      id: uuidv4(),
       title: title,
       message: message,
       category: category,
       upvotes: 0,
       status: "planned",
     };
- 
+
     history.push("/");
   };
 

@@ -5,6 +5,7 @@ import { CancelButton, StyledButton, BackButton } from "../components/Button";
 import { SuggestionsContext } from "../contexts/SuggestionsContext";
 import Container from "../components/Container";
 import Dropdown from "../components/Dropdown";
+import { v4 as uuidv4 } from "uuid";
 
 const Nav = styled.div`
   margin-bottom: 3.5em;
@@ -81,7 +82,7 @@ const ListButton = styled.button`
 export const NewFeedback = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Feature");
-  const [message, setMessage] = useState("");
+  const [description, setDescription] = useState("");
   const categories = ["Feature", "UI", "UX", "Enhancement", "Bug"];
 
   const { suggestions, addFeedback } = useContext(SuggestionsContext);
@@ -93,10 +94,10 @@ export const NewFeedback = () => {
 
     //create component
     const feedback = {
-      id: new Date().getTime(),
+      id: uuidv4(),
       title: title,
       category: category,
-      message: message,
+      description: description,
       upvotes: 0,
       status: "suggestions",
     };
@@ -139,12 +140,8 @@ export const NewFeedback = () => {
             etc.
           </Description>
           <TextArea
-            name=""
-            id=""
-            // cols="30"
-            // rows="10"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
 
           {/* FIXME: Doesnt redirect after clicking */}

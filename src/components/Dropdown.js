@@ -27,11 +27,11 @@ const DropDownHeader = styled.div`
       }
     `}
 
-    &:active {
-      outline-style: solid;
-      outline-color: var(--royalBlue);
-      outline-width: thin;
-    }
+  &:active {
+    outline-style: solid;
+    outline-color: var(--royalBlue);
+    outline-width: thin;
+  }
 `;
 
 const DropDownListContainer = styled.div`
@@ -43,7 +43,6 @@ const DropDownList = styled.ul`
   margin: 1em 0;
 
   background: #ffffff;
-  /* border: 1px solid #979797; */
   border-radius: 10px;
   box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.3505);
 `;
@@ -61,10 +60,6 @@ const ListItem = styled.li`
   :hover {
     color: var(--brightPurple);
   }
-
-
-
-
 `;
 
 const Dropdown = ({ categories, setCategory }) => {
@@ -73,14 +68,14 @@ const Dropdown = ({ categories, setCategory }) => {
   const [selectedOption, setSelectedOption] = useState("Feature");
 
   useEffect(() => {
-    localStorage.getItem("choice");
+    // localStorage.getItem("choice");
     console.log(selectedOption);
   }, [selectedOption]);
 
   const onOptionClicked = (value) => {
     setSelectedOption(value);
     setIsOpen(false);
-    localStorage.setItem("choice", value);
+    // localStorage.setItem("choice", value);
     setCategory(value);
   };
 

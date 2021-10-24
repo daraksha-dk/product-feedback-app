@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { StyledButton } from "../Button";
+import Dropdown from "../Dropdown";
+import CommentDropdown from "../CommentDropdown";
+import { SuggestionsContext } from "../../contexts/SuggestionsContext";
 
 const FeedbackNav = styled.div`
   background-color: var(--darkBlue);
@@ -11,32 +14,52 @@ const FeedbackNav = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1.5em;
+
+  /* will need a media query  */
 `;
 
-const SearchBar = styled.p`
-  font-weight: 700;
+const SearchBar = styled.div`
+  display: flex;
+  font-weight: 400;
   font-size: 13px;
   cursor: pointer;
+  position: relative;
 
   ::after {
     content: url("/assets/shared/icon-arrow-down.svg");
     margin-left: 7px;
-    color: var(--white);
   }
 `;
 
 const Span = styled.span`
-  font-weight: 400;
+  font-weight: 700;
 `;
 
 const FeedbackBar = () => {
+  const { sortingCategory, setSortingCategory } =
+    useContext(SuggestionsContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+  const categories = [
+    "Most Upvotes",
+    "Least Upvotes",
+    "Most Comments",
+    "Least Comments",
+  ];
+
   return (
     <FeedbackNav>
-      <SearchBar>
-        <Span> Sort by : </Span> Most Upvotes
+      <SearchBar onClick={toggle}>
+        <p>
+          Sort by : <Span>{sortingCategory}</Span>
+        </p>
+        <CommentDropdown
+          categories={categories}
+          setCategory={setSortingCategory}
+          isOpen={isOpen}
+        />
       </SearchBar>
-      {/* when we click the search bar, the dropdown menu should appear */}
-      {/* Most upvotes Least upvotes Most comments Least comments Add */}
+
       <StyledButton
         as={Link}
         to="/newfeedback"

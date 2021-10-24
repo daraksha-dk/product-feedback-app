@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FilterButton, UpvoteButton } from "../Button";
 
-const FeedbackItem = styled.div`
+const FeedbackCard = styled.div`
   padding: 1.5em;
   background-color: white;
   margin-bottom: 1rem;
@@ -51,20 +51,20 @@ const CommentDiv = styled.div`
 const MainInfo = styled.div``;
 
 const calculate = (feedback) => {
-  let comLength = feedback.comments.length;
+  let commentLength = feedback.comments.length;
 
   feedback.comments.forEach((comment) => {
     if (comment.replies) {
-      comLength += comment.replies.length;
+      commentLength += comment.replies.length;
     }
   });
 
-  return comLength;
+  return commentLength;
 };
 
 const Feedback = ({ feedback }) => {
   return (
-    <FeedbackItem>
+    <FeedbackCard>
       <MainInfo>
         <Title>{feedback.title}</Title>
         <Description>{feedback.description}</Description>
@@ -76,13 +76,12 @@ const Feedback = ({ feedback }) => {
       </UpvoteDiv>
 
       <CommentDiv>
-        {/* doesnt account for replies yet */}
         <CommentButton>
           {/* {console.log(feedback)} */}
           {feedback.comments ? calculate(feedback) : 0}
         </CommentButton>
       </CommentDiv>
-    </FeedbackItem>
+    </FeedbackCard>
   );
 };
 

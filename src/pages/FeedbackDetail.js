@@ -6,7 +6,9 @@ import Feedback from "../components/Feedback/Feedback";
 import { Link, useParams } from "react-router-dom";
 import CommentList from "../components/Comments/CommentList";
 
-import { SuggestionsContext } from "../contexts/SuggestionsContext";
+// import { SuggestionsContext } from "../contexts/SuggestionsContext";
+
+import { useLocation } from "react-router-dom";
 
 const AddComment = styled.div`
   background-color: #fff;
@@ -46,7 +48,7 @@ export const FeedbackDetail = () => {
   const [charCount, setCharCount] = useState(250);
   const [exceeded, setExceeded] = useState(false);
 
-  const { suggestions } = useContext(SuggestionsContext);
+  // const { suggestions } = useContext(SuggestionsContext);
 
   // useEffect(() => {
   //   if (charCount === 0) {
@@ -73,8 +75,12 @@ export const FeedbackDetail = () => {
   };
 
   const [comments, setComments] = useState(0);
-  const { id } = useParams();
-  const feedbackItem = suggestions[id - 1];
+  const [isToggled, setIsToggled] = useState(false);
+  const { id } = useParams(); //correct
+
+  //using this to pass feedback prop with link
+  const location = useLocation();
+  const { data } = location.state;
 
   const addComments = (feedbackItem) => {
     let comLength = feedbackItem.comments.length;
@@ -91,7 +97,9 @@ export const FeedbackDetail = () => {
   };
 
   useEffect(() => {
-    addComments(feedbackItem);
+    if (data.comments) {
+      addComments(data);
+    }
   }, []);
 
   return (
@@ -109,18 +117,11 @@ export const FeedbackDetail = () => {
         </EditButton>
       </Nav>
 
-      {/* Feedback goes here */}
+      {/* Suggestion that's being commented on */}
 
-      <Feedback feedback={feedbackItem} />
+      <Feedback feedback={data} />
 
-      {/* {console.log(feedbackItem)} */}
-
-      {/* COMMENTS SHOULD GO HERE */}
-      {/* {console.log(feedbackItem.comments[1].replies)} */}
-
-      {/* {console.log(feedbackItem.comments.length)} */}
-      {/* ----------------------------------- */}
-      <CommentList id={id} comments={comments} />
+      {data.comments ? <CommentList id={id} numComments={comments} /> : null}
 
       <AddComment>
         <h3>Add comment</h3>

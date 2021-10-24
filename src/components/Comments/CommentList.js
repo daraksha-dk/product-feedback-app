@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SuggestionsContext } from "../../contexts/SuggestionsContext";
 import Comment from "../Comments/Comment";
 import Reply from "../Comments/Reply";
+import { v4 as uuidv4 } from "uuid";
 
 const CommentThread = styled.div`
   margin-bottom: 1.5rem;
@@ -15,19 +16,19 @@ const CommentThread = styled.div`
   }
 `;
 
-const CommentList = ({ id, comments }) => {
+const CommentList = ({ id, numComments }) => {
   const { suggestions } = useContext(SuggestionsContext);
 
-  const items = suggestions[id - 1].comments.map((comment, index) => {
+  const items = suggestions[id - 1].comments.map((comment) => {
     const image = comment.user.image;
     const fullName = comment.user.name;
     const userName = comment.user.username;
 
     const checkReply = () => {
-      const replies = comment.replies.map((reply, index) => {
+      const replies = comment.replies.map((reply) => {
         return (
           <Reply
-            key={index}
+            key={uuidv4()}
             comment={reply.content}
             image={`.${reply.user.image}`}
             fullName={reply.user.name}
@@ -40,9 +41,8 @@ const CommentList = ({ id, comments }) => {
     };
 
     return (
-      <div>
+      <div key={uuidv4()}>
         <Comment
-          key={index}
           comment={comment}
           image={image}
           fullName={fullName}
@@ -55,7 +55,7 @@ const CommentList = ({ id, comments }) => {
 
   return (
     <CommentThread>
-      <h3>{comments} Comments</h3>
+      <h3>{numComments} Comments</h3>
       {items}
     </CommentThread>
   );
