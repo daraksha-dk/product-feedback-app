@@ -44,43 +44,33 @@ const Nav = styled.div`
 `;
 
 export const FeedbackDetail = () => {
+  const MAX_LENGTH = 250;
   const [message, setMessage] = useState("");
-  const [charCount, setCharCount] = useState(250);
-  const [exceeded, setExceeded] = useState(false);
+  const [charCount, setCharCount] = useState(MAX_LENGTH);
 
-  // const { suggestions } = useContext(SuggestionsContext);
-
-  // useEffect(() => {
-  //   if (charCount === 0) {
-  //     setExceeded(true);
-  //   }
-  // }, [charCount]);
-
-  const handleInput = (e) => {
-    const input = e.target.value;
-    let previousMessage = "";
-
-    setMessage((prevState) => {
-      previousMessage = prevState;
-      // console.log("Input:" + input);
-      // console.log("previous message:" + previousMessage);
-      return input;
-    });
-
-    setCharCount((prevState) => {
-      // console.log("Input length: " + input.length);
-      // console.log("Previous message length: " + previousMessage.length);
-      return prevState - (input.length - previousMessage.length);
-    });
-  };
-
+  ///////////////////////////////////////////////////////
   const [comments, setComments] = useState(0);
   const [isToggled, setIsToggled] = useState(false);
   const { id } = useParams(); //correct
 
   //using this to pass feedback prop with link
   const location = useLocation();
-  const { data } = location.state;
+  const { feedbackData } = location.state;
+
+  //FIXME: refactor
+  const handleInput = (e) => {
+    const input = e.target.value;
+    let previousMessage = "";
+
+    setMessage((prevState) => {
+      previousMessage = prevState;
+      return input;
+    });
+
+    setCharCount((prevState) => {
+      return prevState - (input.length - previousMessage.length);
+    });
+  };
 
   const addComments = (feedbackItem) => {
     let comLength = feedbackItem.comments.length;
@@ -97,8 +87,8 @@ export const FeedbackDetail = () => {
   };
 
   useEffect(() => {
-    if (data.comments) {
-      addComments(data);
+    if (feedbackData.comments) {
+      addComments(feedbackData);
     }
   }, []);
 
@@ -117,11 +107,11 @@ export const FeedbackDetail = () => {
         </EditButton>
       </Nav>
 
-      {/* Suggestion that's being commented on */}
+      <Feedback feedback={feedbackData} />
 
-      <Feedback feedback={data} />
-
-      {data.comments ? <CommentList id={id} numComments={comments} /> : null}
+      {feedbackData.comments ? (
+        <CommentList feedbackData={feedbackData} id={id} numComments={comments} />
+      ) : null}
 
       <AddComment>
         <h3>Add comment</h3>
@@ -131,6 +121,7 @@ export const FeedbackDetail = () => {
           onChange={handleInput}
           value={message}
           placeholder="Type your comment here"
+          maxLength={MAX_LENGTH}
         ></TextArea>
         <EndSection>
           <p>{charCount} characters left</p>

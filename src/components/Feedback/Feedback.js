@@ -8,6 +8,8 @@ const FeedbackCard = styled.div`
   margin-bottom: 1rem;
   border-radius: 10px;
   position: relative;
+
+  ${({ border }) => border && `border-top: 6px solid black;`}
 `;
 
 const Title = styled.h5`

@@ -1,55 +1,22 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Reply from "./Reply";
+import React from "react";
+import {
+  CommentContainer,
+  CommentHeader,
+  Image,
+  Button,
+  Span,
+} from "./CommentStyle";
 
-const CommentContainer = styled.div`
-  font-size: 13px;
-  color: var(--gray);
-  margin: 1.5rem 0;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #8c92b33e;
-`;
-
-const CommentHeader = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-
-  h5 {
-    color: var(--lighterDarkBlue);
-  }
-
-  p {
-    font-size: 13px;
-    color: var(--gray);
-  }
-`;
-
-const Name = styled.div`
-  display: inline;
-`;
-
-const Image = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 1rem;
-`;
-
-const Button = styled.button`
-  background-color: transparent;
-  margin-left: auto;
-  color: var(--royalBlue);
-  font-weight: 600;
-
-  :focus {
-    text-decoration: underline;
-  }
-`;
-
-const Comment = ({ comment, image, fullName, userName }) => {
+const Comment = ({
+  comment,
+  image,
+  fullName,
+  userName,
+  replyingTo,
+  padding,
+}) => {
   return (
-    <CommentContainer>
+    <CommentContainer padding={padding}>
       <CommentHeader>
         <Image src={`.${image}`} alt="image of person" />
         <div>
@@ -60,9 +27,14 @@ const Comment = ({ comment, image, fullName, userName }) => {
         <Button>Reply</Button>
       </CommentHeader>
 
-      <p>{comment.content}</p>
+      {replyingTo ? (
+        <p>
+          <Span>@{replyingTo}</Span>
+          {comment}
+        </p>
+      ) : null}
 
-      {/* {comment.replies ? checkReply() : "no"} */}
+      <p>{comment.content}</p>
     </CommentContainer>
   );
 };

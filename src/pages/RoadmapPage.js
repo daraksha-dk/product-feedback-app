@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Container from "../components/Container";
 import { StyledButton, BackButton } from "../components/Button";
 import { useParams } from "react-router";
-
 import { Link } from "react-router-dom";
+import { SuggestionsContext } from "../contexts/SuggestionsContext";
+import Feedback from "../components/Feedback/Feedback";
 
 const Nav = styled.div`
   display: flex;
@@ -43,8 +44,69 @@ const Categories = styled.div`
   }
 `;
 
+const Section = styled.h5`
+  cursor: pointer;
+
+  :focus {
+    color: red;
+  }
+`;
+
 export const RoadmapPage = () => {
   const { id } = useParams();
+  const { roadmapItems } = useContext(SuggestionsContext);
+  const [category, setCategory] = useState("In Progress");
+  const categories = ["Planned", "In Progress", "Live"];
+
+  const getInProgressItems = () => {
+    const progressItems = roadmapItems.filter(
+      (item) => item.status === "in-progress"
+    );
+
+    return progressItems.map((item) => {
+      return <Feedback feedback={item} />;
+    });
+  };
+
+  const getPlannedItems = () => {
+    const plannedItems = roadmapItems.filter(
+      (item) => item.status === "planned"
+    );
+
+    return plannedItems.map((item) => {
+      return <Feedback feedback={item} />;
+    });
+  };
+
+  const getLiveItems = () => {
+    const liveItems = roadmapItems.filter((item) => item.status === "live");
+
+    return liveItems.map((item) => {
+      return <Feedback feedback={item} border={true} />;
+    });
+  };
+
+  const onOptionClicked = (value) => {
+    setCategory(value);
+    console.log(value);
+  };
+
+  const showSection = () => {
+    switch (category) {
+      case "Planned":
+        return getPlannedItems();
+
+      case "In Progress":
+        return getInProgressItems();
+
+      case "Live":
+        return getLiveItems();
+
+      default:
+        return getInProgressItems();
+    }
+  };
+
   return (
     <div>
       <Nav>
@@ -66,12 +128,16 @@ export const RoadmapPage = () => {
       </Nav>
 
       <Categories>
-        <h5>Planned (2)</h5>
-        <h5>In Progress (3)</h5>
-        <h5>Live (1)</h5>
+        <Section onClick={() => onOptionClicked("Planned")}>
+          Planned (2)
+        </Section>
+        <Section onClick={() => onOptionClicked("In Progress")}>
+          In Progress (2)
+        </Section>
+        <Section onClick={() => onOptionClicked("Live")}>Live (2)</Section>
       </Categories>
 
-      <Content></Content>
+      <Content>{showSection()}</Content>
     </div>
   );
 };

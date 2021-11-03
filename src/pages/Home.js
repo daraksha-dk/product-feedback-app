@@ -30,24 +30,63 @@ export const Home = () => {
 
       case "Most Comments":
         suggestions.sort((a, b) => {
-          suggestions.map((suggestion) => {
-            let totalComments = 0;
-            if (suggestion.comments) {
-              //an array of comment objects
-              // console.log(suggestion.comments); //add this
-              totalComments += suggestion.comments.length;
-              suggestion.comments.map((comment) => {
-                if (comment.replies) {
-                  // console.log(comment.replies.length); //and all this
-                  totalComments += comment.replies.length;
-                }
-              });
-            }
-            // console.log(totalComments);
-            return totalComments;
-          });
+          let totalComments = 0;
+          if (a.comments) {
+            //an array of comment objects
+            // console.log(suggestion.comments); //add this
+            totalComments += a.comments.length;
+            a.comments.map((comment) => {
+              if (comment.replies) {
+                // console.log(comment.replies.length); //and all this
+                totalComments += comment.replies.length;
+              }
+            });
+          } else {
+            return 0;
+          }
+
+          // suggestions.map((suggestion) => {
+          //   // let totalComments = 0;
+          //   // if (suggestion.comments) {
+          //   //   //an array of comment objects
+          //   //   // console.log(suggestion.comments); //add this
+          //   //   totalComments += suggestion.comments.length;
+          //   //   suggestion.comments.map((comment) => {
+          //   //     if (comment.replies) {
+          //   //       // console.log(comment.replies.length); //and all this
+          //   //       totalComments += comment.replies.length;
+          //   //     }
+          //   //   });
+          //   // }else {
+          //   //   return 0;
+          //   // }
+          //   // console.log(totalComments);
+          //   return totalComments;
+          // });
           // console.log(a.totalComments);
-          return a.totalComments - b.totalComments;
+
+          return b.comments.length - a.comments.length;
+        });
+
+        break;
+
+      case "Least Comments":
+        suggestions.sort((a, b) => {
+          let totalComments = 0;
+          if (a.comments) {
+            //an array of comment objects
+            // console.log(suggestion.comments); //add this
+            totalComments += a.comments.length;
+            a.comments.map((comment) => {
+              if (comment.replies) {
+                // console.log(comment.replies.length); //and all this
+                totalComments += comment.replies.length;
+              }
+            });
+          } else {
+            return 0;
+          }
+          return a.comments.length - b.comments.length;
         });
 
         break;

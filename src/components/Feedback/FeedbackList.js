@@ -19,7 +19,7 @@ const FeedbackList = ({ sort }) => {
         key={uuidv4()}
         to={{
           pathname: `/feature/${feedback.id}`,
-          state: { data: feedback },
+          state: { feedbackData: feedback },
         }}
       >
         <Feedback feedback={feedback} />

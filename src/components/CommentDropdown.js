@@ -27,7 +27,7 @@ const ListItem = styled.li`
   }
 `;
 
-const Dropdown = ({ categories, setCategory, isOpen}) => {
+const Dropdown = ({ categories, setCategory, isOpen }) => {
   const onOptionClicked = (value) => {
     setCategory(value);
   };

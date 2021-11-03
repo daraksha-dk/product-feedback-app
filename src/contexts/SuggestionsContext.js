@@ -12,6 +12,8 @@ export const SuggestionsProvider = ({ children }) => {
 
   const [sortingCategory, setSortingCategory] = useState("Most Upvotes");
 
+  const [roadmapItems, setRoadmapItems] = useState(null);
+
   //Functions: add, delete, edit
 
   const addFeedback = (feedbackObj) => {
@@ -27,6 +29,17 @@ export const SuggestionsProvider = ({ children }) => {
     setSuggestions(newArray);
   };
 
+  //these are product feedback requests that have status other than suggestion
+  //in progress, planned, live
+  const getNonSuggestions = () => {
+    const originalArray = Data.productRequests;
+    const newArray = originalArray.filter(
+      (productRequest) => productRequest.status !== "suggestion"
+    );
+    setRoadmapItems(newArray);
+
+  };
+
   //we only want the product feedback requests objects that have a the status property of "suggestion"
 
   //maybe filter methods come in here
@@ -38,6 +51,7 @@ export const SuggestionsProvider = ({ children }) => {
     } else {
       getSuggestions();
       setProductRequests(Data.productRequests); //all of the info from json file
+      getNonSuggestions(Data.productRequests);
     }
   }, [suggestions, suggestionCount]);
 
@@ -46,7 +60,8 @@ export const SuggestionsProvider = ({ children }) => {
     addFeedback,
     suggestionCount,
     setSortingCategory,
-    sortingCategory
+    sortingCategory,
+    roadmapItems
   };
 
   return (

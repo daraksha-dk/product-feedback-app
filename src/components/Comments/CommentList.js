@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { SuggestionsContext } from "../../contexts/SuggestionsContext";
 import Comment from "../Comments/Comment";
-import Reply from "../Comments/Reply";
 import { v4 as uuidv4 } from "uuid";
 
 const CommentThread = styled.div`
@@ -16,10 +14,8 @@ const CommentThread = styled.div`
   }
 `;
 
-const CommentList = ({ id, numComments }) => {
-  const { suggestions } = useContext(SuggestionsContext);
-
-  const items = suggestions[id - 1].comments.map((comment) => {
+const CommentList = ({ feedbackData, numComments }) => {
+  const items = feedbackData.comments.map((comment) => {
     const image = comment.user.image;
     const fullName = comment.user.name;
     const userName = comment.user.username;
@@ -27,13 +23,14 @@ const CommentList = ({ id, numComments }) => {
     const checkReply = () => {
       const replies = comment.replies.map((reply) => {
         return (
-          <Reply
+          <Comment
             key={uuidv4()}
             comment={reply.content}
-            image={`.${reply.user.image}`}
+            image={reply.user.image}
             fullName={reply.user.name}
             userName={reply.user.username}
             replyingTo={reply.replyingTo}
+            padding={true}
           />
         );
       });
@@ -47,6 +44,7 @@ const CommentList = ({ id, numComments }) => {
           image={image}
           fullName={fullName}
           userName={userName}
+          padding={false}
         />
         {comment.replies ? checkReply() : "no"}
       </div>
