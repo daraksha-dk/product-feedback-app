@@ -37,12 +37,7 @@ export const SuggestionsProvider = ({ children }) => {
       (productRequest) => productRequest.status !== "suggestion"
     );
     setRoadmapItems(newArray);
-
   };
-
-  //we only want the product feedback requests objects that have a the status property of "suggestion"
-
-  //maybe filter methods come in here
 
   useEffect(() => {
     if (suggestions) {
@@ -50,7 +45,7 @@ export const SuggestionsProvider = ({ children }) => {
       setLoading(false);
     } else {
       getSuggestions();
-      setProductRequests(Data.productRequests); //all of the info from json file
+      setProductRequests(Data.productRequests);
       getNonSuggestions(Data.productRequests);
     }
   }, [suggestions, suggestionCount]);
@@ -61,7 +56,7 @@ export const SuggestionsProvider = ({ children }) => {
     suggestionCount,
     setSortingCategory,
     sortingCategory,
-    roadmapItems
+    roadmapItems,
   };
 
   return (

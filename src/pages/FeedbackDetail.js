@@ -47,17 +47,13 @@ export const FeedbackDetail = () => {
   const MAX_LENGTH = 250;
   const [message, setMessage] = useState("");
   const [charCount, setCharCount] = useState(MAX_LENGTH);
-
-  ///////////////////////////////////////////////////////
   const [comments, setComments] = useState(0);
   const [isToggled, setIsToggled] = useState(false);
   const { id } = useParams(); //correct
 
-  //using this to pass feedback prop with link
   const location = useLocation();
   const { feedbackData } = location.state;
 
-  //FIXME: refactor
   const handleInput = (e) => {
     const input = e.target.value;
     let previousMessage = "";
@@ -110,7 +106,11 @@ export const FeedbackDetail = () => {
       <Feedback feedback={feedbackData} />
 
       {feedbackData.comments ? (
-        <CommentList feedbackData={feedbackData} id={id} numComments={comments} />
+        <CommentList
+          feedbackData={feedbackData}
+          id={id}
+          numComments={comments}
+        />
       ) : null}
 
       <AddComment>

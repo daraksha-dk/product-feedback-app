@@ -46,7 +46,7 @@ const CommentList = ({ feedbackData, numComments }) => {
           userName={userName}
           padding={false}
         />
-        {comment.replies ? checkReply() : "no"}
+        {comment.replies ? checkReply() : null}
       </div>
     );
   });

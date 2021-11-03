@@ -32,38 +32,15 @@ export const Home = () => {
         suggestions.sort((a, b) => {
           let totalComments = 0;
           if (a.comments) {
-            //an array of comment objects
-            // console.log(suggestion.comments); //add this
             totalComments += a.comments.length;
             a.comments.map((comment) => {
               if (comment.replies) {
-                // console.log(comment.replies.length); //and all this
                 totalComments += comment.replies.length;
               }
             });
           } else {
             return 0;
           }
-
-          // suggestions.map((suggestion) => {
-          //   // let totalComments = 0;
-          //   // if (suggestion.comments) {
-          //   //   //an array of comment objects
-          //   //   // console.log(suggestion.comments); //add this
-          //   //   totalComments += suggestion.comments.length;
-          //   //   suggestion.comments.map((comment) => {
-          //   //     if (comment.replies) {
-          //   //       // console.log(comment.replies.length); //and all this
-          //   //       totalComments += comment.replies.length;
-          //   //     }
-          //   //   });
-          //   // }else {
-          //   //   return 0;
-          //   // }
-          //   // console.log(totalComments);
-          //   return totalComments;
-          // });
-          // console.log(a.totalComments);
 
           return b.comments.length - a.comments.length;
         });
@@ -74,12 +51,9 @@ export const Home = () => {
         suggestions.sort((a, b) => {
           let totalComments = 0;
           if (a.comments) {
-            //an array of comment objects
-            // console.log(suggestion.comments); //add this
             totalComments += a.comments.length;
             a.comments.map((comment) => {
               if (comment.replies) {
-                // console.log(comment.replies.length); //and all this
                 totalComments += comment.replies.length;
               }
             });
@@ -97,14 +71,9 @@ export const Home = () => {
 
   const filterSuggestions = () => {};
 
-  //keep track of sorting in here?
-
-  //Pass feedback count to feedback bar
-
   return (
     <div>
       <Header />
-      {/* Feedback bar will also need to keep up with the number of suggestions*/}
       <FeedbackBar />
 
       <FeedbackContainer>
