@@ -71,17 +71,15 @@ export const Home = () => {
 
   const filterSuggestions = () => {};
 
+  sort();
+
   return (
     <div>
       <Header />
       <FeedbackBar />
 
       <FeedbackContainer>
-        {suggestions.length === 0 ? (
-          <EmptyFeedbackList />
-        ) : (
-          <FeedbackList sort={sort} />
-        )}
+        {suggestions.length === 0 ? <EmptyFeedbackList /> : <FeedbackList />}
       </FeedbackContainer>
     </div>
   );

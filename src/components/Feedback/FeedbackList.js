@@ -4,13 +4,11 @@ import { SuggestionsContext } from "../../contexts/SuggestionsContext";
 import StyledLink from "../StyledLink";
 import { v4 as uuidv4 } from "uuid";
 
-const FeedbackList = ({ sort }) => {
+const FeedbackList = ({  }) => {
   const { suggestions } = useContext(SuggestionsContext);
 
-  //- Only product feedback requests with a status of `suggestion` should be shown on the Suggestions page.
-
   //sort the list before mapping it
-  sort();
+  // sort();
 
   const items = suggestions.map((feedback) => {
     // console.log(feedback);

@@ -48,8 +48,6 @@ Add a screenshot of your solution. The easiest way to do this is to use Firefox 
 ### Built with
 
 - Semantic HTML5 markup
-- Flexbox
-- CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
