@@ -24,9 +24,10 @@ const SearchBar = styled.div`
   font-size: 13px;
   cursor: pointer;
   position: relative;
+  color: var(--buttonTextColor);
 
   ::after {
-    content: url("/assets/shared/icon-arrow-down.svg");
+    content: url("/assets/shared/white-arrow.svg");
     margin-left: 7px;
   }
 `;

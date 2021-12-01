@@ -12,27 +12,35 @@ const Header = styled.header`
   background-repeat: no-repeat;
   background-size: cover;
   height: 72px;
-  width: 100vw;
+  /* width: 100vw; */
   padding: 1.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 768px) {
+    height: 178px;
+    width: 223px;
+    border-radius: 20px;
+    align-items: flex-end;
+    background-image: url("/assets/suggestions/tablet/background-header.png");
+  }
 `;
 
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  color: var(--white);
 `;
 
-const Title = styled.h1`
+const Title = styled.p`
   font-size: 0.9375em;
-  color: var(--white);
-  line-height: normal;
+  font-weight: 700;
+  letter-spacing: -0.19px;
 `;
 
 const SecondaryTitle = styled.span`
   font-size: 0.8125em;
-  color: var(--white);
   font-weight: 500;
   opacity: 75%;
 `;
@@ -60,14 +68,14 @@ const SuggestionsHeader = () => {
         <div>
           <Icon
             src="/assets/shared/mobile/icon-hamburger.svg"
-            alt="Hamburger menu"
+            alt="Hamburger menu icon"
             onClick={toggleMenu}
             style={isToggled ? null : { display: "block" }}
           />
 
           <Icon
             src="/assets/shared/mobile/icon-close.svg"
-            alt="Close menu"
+            alt="Close menu icon"
             onClick={toggleMenu}
             style={isToggled ? { display: "block" } : null}
           />

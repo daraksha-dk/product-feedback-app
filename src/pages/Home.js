@@ -5,9 +5,26 @@ import EmptyFeedbackList from "../components/Feedback/EmptyFeedbackList";
 import FeedbackList from "../components/Feedback/FeedbackList";
 import styled from "styled-components";
 import { SuggestionsContext } from "../contexts/SuggestionsContext";
+import Roadmap from "../components/HomePage/Roadmap";
+
+const HomeContainer = styled.div`
+  @media (min-width: 768px) {
+    margin: 3.5rem 2.4375rem;
+    max-width: 689px;
+  }
+`;
+
+const HeaderContainer = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
 
 const FeedbackContainer = styled.div`
   padding: 2em 1em 2.4375em 1em;
+
+  @media (min-width: 768px) {
+  }
 `;
 
 export const Home = () => {
@@ -74,13 +91,20 @@ export const Home = () => {
   sort();
 
   return (
-    <div>
-      <Header />
+    <HomeContainer>
+      <HeaderContainer>
+        <Header />
+
+        {/* <Roadmap /> */}
+        {/* need buttons thing */}
+        {/* need roadmap component thing */}
+      </HeaderContainer>
+
       <FeedbackBar />
 
       <FeedbackContainer>
         {suggestions.length === 0 ? <EmptyFeedbackList /> : <FeedbackList />}
       </FeedbackContainer>
-    </div>
+    </HomeContainer>
   );
 };
